@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Unix CLI'`, () => {
+  it(`should have as title 'Rails CLI'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Unix CLI');
+    expect(app.title).toEqual('Rails CLI');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content h1.title').textContent).toContain('Unix CLI');
+    expect(compiled.querySelector('.content h1.title').textContent).toContain('Rails CLI');
   });
 });

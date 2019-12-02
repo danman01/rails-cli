@@ -5,7 +5,7 @@
     <div class="spacer"></div>
 
     <div class="fork-me">
-      <a aria-label="Unix-CLI on github" target="_blank" rel="noopener" href="https://github.com/danman01/unix-cli" title="Github">
+      <a aria-label="rails-cli on github" target="_blank" rel="noopener" href="https://github.com/danman01/rails-cli" title="Github">
 
         <span class="fork-me-text">Fork Me On GitHub</span>
       </a>
@@ -39,99 +39,93 @@
   <input type="hidden" #selection>
 
   <div class="card-container">
-    <div class="card card-small" (click)="selection.value = 'list'" tabindex="0">
+    <div class="card card-small" (click)="selection.value = 'console'" tabindex="0">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
-      <span>List files within a Directory</span>
+      <span>Rails Console</span>
     </div>
 
-    <div class="card card-small" (click)="selection.value = 'change'" tabindex="0">
+    <div class="card card-small" (click)="selection.value = 'routes'" tabindex="0">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
-      <span>Change Directory</span>
+      <span>Show Routes</span>
     </div>
 
-    <div class="card card-small" (click)="selection.value = 'make'" tabindex="0">
+    <div class="card card-small" (click)="selection.value = 'new'" tabindex="0">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
-      <span>Create a New Directory</span>
+      <span>New Rails Project</span>
     </div>
-    <div class="card card-small" (click)="selection.value = 'touch'" tabindex="0">
+    <div class="card card-small" (click)="selection.value = 'createdb'" tabindex="0">
         <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
-      <span>Create a New File</span>
+      <span>Create Database</span>
     </div>
 
-    <div class="card card-small" (click)="selection.value = 'delete'" tabindex="0">
+    <div class="card card-small" (click)="selection.value = 'migrate'" tabindex="0">
         <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
-      <span>Delete a File</span>
+      <span>Migrate Database</span>
     </div>
 
-    <div class="card card-small" (click)="selection.value = 'copy'" tabindex="0">
+    <div class="card card-small" (click)="selection.value = 'serve'" tabindex="0">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
-      <span>Copy a File or Folder </span>
+      <span>Start Web Server</span>
     </div>
 
-    <div class="card card-small" (click)="selection.value = 'move'" tabindex="0">
+    <div class="card card-small" (click)="selection.value = 'generate'" tabindex="0">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
-      <span>Move File or Folder</span>
+      <span>Generate a new file, migration, etc</span>
     </div>
 
-    <div class="card card-small" (click)="selection.value = 'home'" tabindex="0">
+    <div class="card card-small" (click)="selection.value = 'scaffold'" tabindex="0">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
-      <span>Go to the Home Directory</span>
-    </div>
-
-    <div class="card card-small" (click)="selection.value = 'sei'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-
-      <span>Verify SEI Directory</span>
-    </div>
-
-    <div class="card card-small" (click)="selection.value = 'man'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-
-      <span>View Man Page</span>
+      <span>Scaffold a new resource</span>
     </div>
 
   </div>
 
   <!-- Terminal -->
   <div class="terminal" [ngSwitch]="selection.value">
-      <pre *ngSwitchDefault>ls
-      * use -l flag for more detailed information
-      * use -a flag to see all, including hidden files
+      <pre *ngSwitchDefault>bin/rails console
+      * shortcut: rails c
+      * exit by typing exit
       </pre>
-      <pre *ngSwitchCase="'change'">cd [/path/name-of-folder]</pre>
-      <pre *ngSwitchCase="'make'">mkdir name-of-folder</pre>
-      <pre *ngSwitchCase="'touch'">touch filename
-      * or atom filename
+      <pre *ngSwitchCase="'routes'">bin/rails routes</pre>
+      <pre *ngSwitchCase="'new'">rails new project-name-here [--database=postgresql][--api]
+        * the options specify the default database and api only
       </pre>
-      <pre *ngSwitchCase="'delete'">rm filename
-      * use the -r flag to recursively delete (will delete folders)
-      * use -f flag to force remove something
+      <pre *ngSwitchCase="'createdb'">bin/rails db:create
+      * verify with psql
+      *  - psql -U username -d database-name
+      * database name is configured here: config/database.yml
+      *  - automatically is set to the name of your project
+      </pre>
+      <pre *ngSwitchCase="'migrate'">bin/rails db:migrate
+      * verify by ensuring db/schema.rb was updated
+      * never change the schema directly!
+      * use migrations instead to incrementally change the db
 
       </pre>
-      <pre *ngSwitchCase="'copy'">cp filename [/location/of/new-filename]
-      * use the -r flag to copy folders
+      <pre *ngSwitchCase="'serve'">bin/rails server
+      * shortcut: rails s
+      * starts on port that is different from your frontend
       </pre>
-      <pre *ngSwitchCase="'move'">mv filename [/new/location/new-filename]</pre>
-      <pre *ngSwitchCase="'home'">cd ~</pre>
-      <pre *ngSwitchCase="'sei'">ls ~/sei
-  =>
-  trainings
-  diagnostics
-  projects
-  tmp
-  challenges
-  practices
-  studies
+      <pre *ngSwitchCase="'generate'">bin/rails generate [model || migration || controller
+        || serializer] [FileName]
+      * ex: bin/rails g model User name:string phone:string age:integer
+      * - the above also gives you a migration
+
       </pre>
-      <pre *ngSwitchCase="'man'">man [command]</pre>
+      <pre *ngSwitchCase="'scaffold'">bin/rails generate scaffold [ResourceName] [property_name1:property_type1]
+        [property_name2:property_type2]
+      * ex: bin/rails g scaffold Post title:string body:text
+      * gives you all files needed for CRUD, including entry in config/routes.rb
+
+      </pre>
   </div>
 
   <!-- Resources -->
@@ -139,32 +133,32 @@
   <p>Here are some links to help you get started:</p>
 
   <div class="card-container">
-    <a class="card" target="_blank" rel="noopener" href="http://www.ee.surrey.ac.uk/Teaching/Unix/">
+    <a class="card" target="_blank" rel="noopener" href="https://guides.rubyonrails.org/api_app.html">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
 
-      <span>Teaching Unix</span>
+      <span>Rails API Only apps</span>
 
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>    </a>
 
-    <a class="card" target="_blank" rel="noopener" href="https://www.rain.org/~mkummel/unix.html">
+    <a class="card" target="_blank" rel="noopener" href="https://guides.rubyonrails.org">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
 
-      <span>UNIX Cheatsheet</span>
+      <span>Rails Guides</span>
 
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
     </a>
 
-    <a class="card" target="_blank" rel="noopener" href="http://tldr-pages.github.io/">
+    <a class="card" target="_blank" rel="noopener" href="https://youtu.be/OaDhY_y8WTo">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
 
-      <span>TLDR Man Pages</span>
+      <span>DHH Blog App Live Coding</span>
 
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
     </a>
-    <a class="card" target="_blank" rel="noopener" href="https://git.generalassemb.ly/ga-wdi-boston/unix-cli">
+    <a class="card" target="_blank" rel="noopener" href="https://git.generalassemb.ly/ga-wdi-boston/rails-api-template/">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
 
-      <span>Unix-CLI at General Assembly</span>
+      <span>Rails App Template at General Assembly</span>
 
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>    </a>
   </div>
