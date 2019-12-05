@@ -56,6 +56,11 @@
 
       <span>New Rails Project</span>
     </div>
+    <div class="card card-small" (click)="selection.value = 'bundle'" tabindex="0">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+
+      <span>Install Dependencies</span>
+    </div>
     <div class="card card-small" (click)="selection.value = 'createdb'" tabindex="0">
         <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
@@ -66,6 +71,16 @@
         <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
       <span>Migrate Database</span>
+    </div>
+    <div class="card card-small" (click)="selection.value = 'seed'" tabindex="0">
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+
+      <span>Seed Database</span>
+    </div>
+    <div class="card card-small" (click)="selection.value = 'drop'" tabindex="0">
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+
+      <span>Drop Database</span>
     </div>
 
     <div class="card card-small" (click)="selection.value = 'serve'" tabindex="0">
@@ -85,6 +100,11 @@
 
       <span>Scaffold a new resource</span>
     </div>
+    <div class="card card-small" (click)="selection.value = 'rspec'" tabindex="0">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+
+      <span>Run Rspec Tests</span>
+    </div>
 
   </div>
 
@@ -94,9 +114,14 @@
       * shortcut: rails c
       * exit by typing exit
       </pre>
-      <pre *ngSwitchCase="'routes'">bin/rails routes</pre>
+      <pre *ngSwitchCase="'routes'">bin/rails routes
+      * Shows all application routes, as configured in config/routes.rb
+      </pre>
       <pre *ngSwitchCase="'new'">rails new project-name-here [--database=postgresql][--api]
         * the options specify the default database and api only
+      </pre>
+      <pre *ngSwitchCase="'bundle'">bundle install
+        * shortcut: bundle
       </pre>
       <pre *ngSwitchCase="'createdb'">bin/rails db:create
       * verify with psql
@@ -108,7 +133,13 @@
       * verify by ensuring db/schema.rb was updated
       * never change the schema directly!
       * use migrations instead to incrementally change the db
-
+      </pre>
+      <pre *ngSwitchCase="'seed'">bin/rails db:seed
+      * runs the db/seeds.rb file
+      * good for setting up initial application data, like an admin user
+      </pre>
+      <pre *ngSwitchCase="'drop'">bin/rails db:drop
+      * destroys the database your project is using (removes all data too)
       </pre>
       <pre *ngSwitchCase="'serve'">bin/rails server
       * shortcut: rails s
@@ -116,15 +147,27 @@
       </pre>
       <pre *ngSwitchCase="'generate'">bin/rails generate [model || migration || controller
         || serializer] [FileName]
-      * ex: bin/rails g model User name:string phone:string age:integer
-      * - the above also gives you a migration
+      * ex: Generate just a model (and migration):
+      * bin/rails g model User name:string phone:string age:integer
 
+      * ex: Generate a migration to add a foreign key author_id column to books table:
+      * bin/rails generate migration addAuthorToBooks author:references
+
+      * ex: Generate a migration to remove a column:
+      *  bin/rails generate migration removeAuthorFromBooks
+      *   -Remember to apply your migrations after you've created them!
       </pre>
       <pre *ngSwitchCase="'scaffold'">bin/rails generate scaffold [ResourceName] [property_name1:property_type1]
         [property_name2:property_type2]
-      * ex: bin/rails g scaffold Post title:string body:text
-      * gives you all files needed for CRUD, including entry in config/routes.rb
-
+      * ex: Create an Author resource with two columns: first_name and last_name
+      *   bin/rails generate scaffold author first_name:string last_name:string
+      *   - gives you all files needed for CRUD, including entry in config/routes.rb
+      * shorthand: bin/rails g scaffold Post title body:text
+      *   - string is the default data type, so the above title will be a string
+      </pre>
+      <pre *ngSwitchCase="'rspec'">bin/rails rspec spec[/individual/spec/file.rb]
+      * run all specs by just running rspec spec
+      * run individual specs by specifying a path to the file
       </pre>
   </div>
 
