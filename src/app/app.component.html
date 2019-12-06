@@ -95,6 +95,18 @@
       <span>Generate a new file, migration, etc</span>
     </div>
 
+    <div class="card card-small" (click)="selection.value = 'rollback'" tabindex="0">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+
+      <span>Revert a Database Migration (rollback)</span>
+    </div>
+
+    <div class="card card-small" (click)="selection.value = 'dbstatus'" tabindex="0">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+
+      <span>Database Migration Status</span>
+    </div>
+
     <div class="card card-small" (click)="selection.value = 'scaffold'" tabindex="0">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
 
@@ -153,9 +165,38 @@
       * ex: Generate a migration to add a foreign key author_id column to books table:
       * bin/rails generate migration addAuthorToBooks author:references
 
-      * ex: Generate a migration to remove a column:
-      *  bin/rails generate migration removeAuthorFromBooks
-      *   -Remember to apply your migrations after you've created them!
+      * ex: Generate a migration to remove a (references / foreign_key) column:
+      *  bin/rails generate migration removeAuthorFromBooks author:references
+
+      * ex: Generate a migration to remove a (string) column:
+      *  bin/rails generate migration removeAuthorFromBooks author:string
+      *   - Always remember to:
+      *     - check the migration file for accuracy,
+      *     - apply your migrations after you've created them!
+      </pre>
+      <pre *ngSwitchCase="'rollback'">bin/rails db:rollback
+      * Attempts to revert the last migration
+
+      * Want to go back (migrate `down`) to a specific version?
+      *   - Use db:migrate:down VERSION=timestamp
+      *   - ex: bin/rails db:migrate:down VERSION=20191205162704
+
+      * Want to migrate `up` a specific version? In the above command, change down to up!
+
+      </pre>
+      <pre *ngSwitchCase="'dbstatus'">bin/rails db:migrate:status
+        * use the `Migration ID` to rollback to a specific version
+        * `down` refers to migrations that have _not yet_ been run!
+        * `up` refers to migrations that have been run.
+
+        * Run bin/rails db:version to see the current version of your Database
+        * This is the last migration applied, and is also at the top of your db/schema.rb
+
+        * In your migration files, `def change` really is just combining up and down methods
+
+        * More from https://guides.rubyonrails.org/active_record_migrations.html:
+        * If you run the rails db:migrate:status command, which displays the status (up or down) of each migration,
+        * you should see ********** NO FILE ********** displayed next to any deleted migration file which was once executed on a specific environment but can no longer be found in the db/migrate/ directory.
       </pre>
       <pre *ngSwitchCase="'scaffold'">bin/rails generate scaffold [ResourceName] [property_name1:property_type1]
         [property_name2:property_type2]
@@ -183,10 +224,10 @@
 
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>    </a>
 
-    <a class="card" target="_blank" rel="noopener" href="https://guides.rubyonrails.org">
+    <a class="card" target="_blank" rel="noopener" href="https://guides.rubyonrails.org/command_line.html">
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
 
-      <span>Rails Guides</span>
+      <span>Rails Guides: Command Line</span>
 
       <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
     </a>
